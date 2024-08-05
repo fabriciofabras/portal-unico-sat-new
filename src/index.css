@@ -39,7 +39,8 @@ body {
 }
 
 .menu-item a:hover {
-    background-color: #575757;
+    background-color: rgb(39, 106, 199);
+
 }
 
 /* Estilo para el menú desplegable */
@@ -60,10 +61,11 @@ body {
 }
 
 .dropdown-menu li a:hover {
-    background-color: #575757;
+    background-color: rgb(39, 106, 199);
 }
 
 /* Mostrar el menú desplegable al pasar el ratón sobre el elemento principal */
 .menu-item.dropdown:hover .dropdown-menu {
+    background-color: rgb(31 41 55);
     display: block;
 }
