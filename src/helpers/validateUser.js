@@ -1,10 +1,11 @@
+import { URL_SERVICE } from "../properties";
+
 export const validateUser = (formData) => {
 
     const validateUser = async () => {
     
       try {
-         const response = await fetch(`http://localhost:3001/login`, {
-           /* const response = await fetch(`http://10.30.39.33:3001/login`, { */
+         const response = await fetch(`http://${URL_SERVICE}:3001/login`, {
             method: 'POST',
           headers: {
             'Content-Type': 'application/json',

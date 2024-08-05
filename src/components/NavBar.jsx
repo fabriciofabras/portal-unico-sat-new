@@ -26,22 +26,32 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
   }
 
   return (
-    <header className="bg-gray-800 md:sticky top-0 z-10">
-      <div className="container mx-1 flex flex-wrap p-5 flex-col md:flex-row items-center">
-        <Row className="w-100 justify-content-center">
-          <Col xs={12} md={6} lg={1}>
+    <header className="bg-gray-800 md:sticky top-0">
+      <div className="container mx-1 flex flex-wrap p-1 flex-col md:flex-row justify-center">
+        <Row>
+          <Col xs={12} md={12} lg={12} >
             <ul className="menu">
-              <li className="menu-item dropdown">
-                <a href="#" className="ml-3 text-xl">
-                  Panel Único de Servicio
-                </a>
-              </li></ul>
+              <li>
+                <p className="text-2xl pt-3 text-white">
+                  Panel único de servicio
+                </p>
+              </li>
+            </ul>
           </Col>
-          <Col xs={12} md={6} lg={11}>
-            <nav className="md:mr-auto md:ml-2 md:py-1	flex flex-wrap items-center text-base justify-center">
+        </Row>
+        <Row className="w-100 justify-content-center justify-center">
+          <Col xs={12} md={12} lg={12}>
+            <nav className="md:mr-auto md:ml-2 md:py-1 flex flex-wrap items-center text-base justify-center">
               {/*   <a href="https://atalait.sharepoint.com/:f:/r/sites/panelsari2p1/Otra%20informacin/04%20Monitoreo%20y%20control/Inventarios?csf=1&web=1&e=Db3NPq" target="_blank" className="mr-1 hover:text-white">
             Repositorio de Información
           </a> */}
+          <ul className="menu">
+                <li className="menu-item dropdown">
+                  <a href="#" onClick={() => handleClick('default')} className="mr-1 hover:text-white">
+                    Inicio
+                  </a>
+                </li>
+              </ul>
               <ul className="menu">
                 <li className="menu-item dropdown">
                   <a href="#">Repositorio</a>
@@ -89,21 +99,21 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
               <ul className="menu">
                 <li className="menu-item dropdown">
                   <a href="https://msi.sat.gob.mx/" target="_blank" className="mr-1 hover:text-white">
-                    Mesa de Servicio
+                    Mesa Sat
                   </a>
                 </li>
               </ul>
               <ul className="menu">
                 <li className="menu-item dropdown">
                   <a href="https://atalait.service-now.com/navpage.do" target="_blank" className="mr-1 hover:text-white">
-                    Service Now
+                    Mesa Atalait
                   </a></li></ul>
 
               <ul className="menu">
                 <li className="menu-item dropdown">
                   <a onClick={handleSalir}
                     href="#"
-                    className="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
+                    className="mr-1 hover:text-white">
                     Salir
                   </a>
                   {/*                     <ArrowRightIcon className="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0" />

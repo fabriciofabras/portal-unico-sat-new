@@ -3,7 +3,7 @@ import React from "react";
 export const Contact = () => {
     return (
         <section id="contact" className="relative">
-            <div className="container px-5 py-10  flex sm:flex-nowrap flex-wrap">
+            <div className="container px-5 py-3  flex sm:flex-nowrap flex-wrap">
                 <form
                     netlify
                     name="contact"
