@@ -9,7 +9,7 @@ export const Inventarios = () => {
 
       
          <iframe  style={{width: 'inherit'}}
-         src={URL_SERVICE}
+         src={`http://${URL_SERVICE}:3000`}
          height="700" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowFullScreen={true}></iframe>
 
 

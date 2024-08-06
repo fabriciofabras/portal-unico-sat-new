@@ -31,7 +31,8 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
         <div className="w-100 bg-gradient-to-r from-yellow-300 to-green-500 ...">
 
         <Row>
-          <Col xs={12} md={12} lg={12}>
+          <Col xs={1} md={1} lg={1}></Col>
+          <Col xs={10} md={10} lg={10}>
             <ul className="menu  justify-center">
               <li>
                 <p className="text-3xl font-semibold pt-3 text-white">
@@ -39,6 +40,18 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
                 </p>
               </li>
             </ul>
+          </Col>
+          <Col xs={1} md={1} lg={1}>
+          <ul className="menu">
+                <li className="menu-item dropdown">
+                  <a onClick={handleSalir}
+                    href="#"
+                    className="hover:text-white text-2x1 p-4">
+                    Salir
+                  </a>
+                  {/*                     <ArrowRightIcon className="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0" />
+ */}
+                </li></ul>
           </Col>
         </Row>
         </div>
@@ -51,7 +64,7 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
           </a> */}
           <ul className="menu">
                 <li className="menu-item dropdown">
-                  <a href="#" onClick={() => handleClick('default')} className="mr-1 hover:text-white">
+                  <a href="#" onClick={() => handleClick('default')} className="mr-1 hover:text-white p-2">
                     Inicio
                   </a>
                 </li>
@@ -87,14 +100,14 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
           </a> */}
               <ul className="menu">
                 <li className="menu-item dropdown">
-                  <a href="#heatmap" onClick={() => handleClick('heatmap')} className="mr-1 hover:text-white">
+                  <a href="#heatmap" onClick={() => handleClick('heatmap')} className="mr-1 hover:text-white p-2">
                     HeatMap
                   </a>
                 </li>
               </ul>
               <ul className="menu">
                 <li className="menu-item dropdown">
-                  <a href="#stockdepartes" onClick={() => handleClick('inventarios')} className="mr-1 hover:text-white">
+                  <a href="#stockdepartes" onClick={() => handleClick('inventarios')} className="mr-1 hover:text-white p-2">
                     Stock de Partes
                   </a>
                 </li>
@@ -102,27 +115,18 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
 
               <ul className="menu">
                 <li className="menu-item dropdown">
-                  <a href="https://msi.sat.gob.mx/" target="_blank" className="hover:text-white text-sm p-2">
+                  <a href="https://msi.sat.gob.mx/" target="_blank" className="hover:text-white text-sm p-3">
                     Mesa de Servicio SAT
                   </a>
                 </li>
               </ul>
               <ul className="menu">
                 <li className="menu-item dropdown">
-                  <a href="https://atalait.service-now.com/navpage.do" target="_blank" className="hover:text-white text-sm p-2">
+                  <a href="https://atalait.service-now.com/navpage.do" target="_blank" className="hover:text-white text-sm p-3">
                     Mesa de Servicio Atalait
                   </a></li></ul>
 
-              <ul className="menu">
-                <li className="menu-item dropdown">
-                  <a onClick={handleSalir}
-                    href="#"
-                    className="mr-1 hover:text-white">
-                    Salir
-                  </a>
-                  {/*                     <ArrowRightIcon className="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0" />
- */}
-                </li></ul>
+             
             </nav>
 
           </Col>
