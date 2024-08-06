@@ -26,19 +26,23 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
   }
 
   return (
-    <header className="bg-gray-800 md:sticky top-0">
-      <div className="container mx-1 flex flex-wrap p-1 flex-col md:flex-row justify-center">
+    <header className="md:sticky top-0">
+      <div className="flex flex-wrap p-1 flex-col md:flex-row justify-center">
+        <div className="w-100 bg-gradient-to-r from-yellow-300 to-green-500 ...">
+
         <Row>
-          <Col xs={12} md={12} lg={12} >
-            <ul className="menu">
+          <Col xs={12} md={12} lg={12}>
+            <ul className="menu  justify-center">
               <li>
-                <p className="text-2xl pt-3 text-white">
-                  Panel único de servicio
+                <p className="text-3xl font-semibold pt-3 text-white">
+                  Panel único de servicio SARI2 Partida 1
                 </p>
               </li>
             </ul>
           </Col>
         </Row>
+        </div>
+
         <Row className="w-100 justify-content-center justify-center">
           <Col xs={12} md={12} lg={12}>
             <nav className="md:mr-auto md:ml-2 md:py-1 flex flex-wrap items-center text-base justify-center">
@@ -90,23 +94,23 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
               </ul>
               <ul className="menu">
                 <li className="menu-item dropdown">
-                  <a href="#controldeinventario" onClick={() => handleClick('inventarios')} className="mr-1 hover:text-white">
-                    Control de Inventario
+                  <a href="#stockdepartes" onClick={() => handleClick('inventarios')} className="mr-1 hover:text-white">
+                    Stock de Partes
                   </a>
                 </li>
               </ul>
 
               <ul className="menu">
                 <li className="menu-item dropdown">
-                  <a href="https://msi.sat.gob.mx/" target="_blank" className="mr-1 hover:text-white">
-                    Mesa Sat
+                  <a href="https://msi.sat.gob.mx/" target="_blank" className="hover:text-white text-sm p-2">
+                    Mesa de Servicio SAT
                   </a>
                 </li>
               </ul>
               <ul className="menu">
                 <li className="menu-item dropdown">
-                  <a href="https://atalait.service-now.com/navpage.do" target="_blank" className="mr-1 hover:text-white">
-                    Mesa Atalait
+                  <a href="https://atalait.service-now.com/navpage.do" target="_blank" className="hover:text-white text-sm p-2">
+                    Mesa de Servicio Atalait
                   </a></li></ul>
 
               <ul className="menu">
