@@ -1,10 +1,13 @@
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Container, Button, Col, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form"
 import { validateUser } from '../../helpers/panelUnico/validateUser';
+import { UserProfileContext } from "../../UserProfileContext";
 
 export const Login = ({ handleLogueado }) => {
+
+  const { profile, setProfile } = useContext(UserProfileContext);
 
   const [formData, setFormData] = useState({
     usuario: "",
@@ -25,6 +28,7 @@ export const Login = ({ handleLogueado }) => {
         console.log(res);
 
         if (res.message === "El usuario ha sido logueado") {
+          setProfile(res.perfil)
           handleLogueado(true); 
         }else{
           setError(res.message);

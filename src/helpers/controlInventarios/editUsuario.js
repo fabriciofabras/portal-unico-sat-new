@@ -5,7 +5,7 @@ export const editUsuario = (formData) => {
   const editUsuario = async () => {
 
     try {
-      const response = await fetch(`http://${URL_SERVER}/updateUsuario/${formData.id}`, {
+      const response = await fetch(`https://${URL_SERVER}/updateUsuario/${formData.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -2,7 +2,7 @@ import { URL_SERVER } from "../../properties";
 
 export const getUsuario = async (id) => {
   try {
-    const response = await fetch(`http://${URL_SERVER}/usuario/${id}`);
+    const response = await fetch(`https://${URL_SERVER}/usuario/${id}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }

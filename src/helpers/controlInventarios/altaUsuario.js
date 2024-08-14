@@ -17,7 +17,7 @@ export const altaUsuario = (formData) => {
     } */
 
 
-        fetch(`http://${URL_SERVER}/altaUsuario`, {
+        fetch(`https://${URL_SERVER}/altaUsuario`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

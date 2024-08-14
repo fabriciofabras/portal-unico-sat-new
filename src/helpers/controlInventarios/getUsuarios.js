@@ -4,7 +4,7 @@ export const getUsuarios = () => {
 
     const getUsuarios = async() => {
 
-        const url = `http://${URL_SERVER}/usuarios`;
+        const url = `https://${URL_SERVER}/usuarios`;
         const resp = await fetch( url );
         const  results  = await resp.json();
     

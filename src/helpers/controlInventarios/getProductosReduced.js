@@ -4,7 +4,7 @@ export const getProductosReduced = () => {
 
     const getProductosReduced = async() => {
 
-        const url = `http://${URL_SERVER}/productosReduced`;
+        const url = `https://${URL_SERVER}/productosReduced`;
         const resp = await fetch( url );
         const  results  = await resp.json();
     

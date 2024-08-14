@@ -193,7 +193,7 @@ app.post('/login', async (req, res) => {
       }
       // res.json(item);
 
-      return res.status(200).json({ message: mensaje });
+      return res.status(200).json({ message: mensaje, item });
 
     } else {
       return res.status(404).json({ message: 'El usuario no existe' });

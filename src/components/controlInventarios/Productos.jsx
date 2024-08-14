@@ -2,11 +2,14 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { Col, Container, Form, InputGroup, Row } from 'react-bootstrap';
 import { getProductos } from '../../helpers/controlInventarios//getProductos';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ModalAlta from './ModalAlta';
 import { getProductosReduced } from '../../helpers/controlInventarios/getProductosReduced';
+import { UserProfileContext } from '../../UserProfileContext';
 
 export const Productos = () => {
+
+    const { profile } = useContext(UserProfileContext);
 
     const isInIframe = window.self !== window.top;
 
@@ -27,183 +30,12 @@ export const Productos = () => {
 
     const [filteredData, setFilteredData] = useState([]);
 
-    /*    const productos = [
-           {
-               tipo: "ISILON",
-               noParte: "403-0075-02",
-               desc: "HARD DRIVE_1TB 7.2K DISK SATA-300 3.5",
-               componente: "Drive",
-               sede: "Querétaro",
-               ubicacion: "",
-               min_stock: 1,
-               cantidad: 2,
-               max_stock: 3,
-               reorden: 3,
-               proveedor: "",
-               sendor: "",
-               pn_vendor: "",
-               sn_vendor: "",
-               sn_emc: "",
-               capacidad: ""
-           },
-           {
-               tipo: "SAN",
-               noParte: "403-0075-02",
-               desc: "HARD DRIVE_1TB 7.2K DISK SATA-300 3.5",
-               componente: "Drive",
-               sede: "Querétaro",
-               ubicacion: "",
-               min_stock: 1,
-               cantidad: 2,
-               max_stock: 3,
-               reorden: 3,
-               proveedor: "",
-               sendor: "",
-               pn_vendor: "",
-               sn_vendor: "",
-               sn_emc: "",
-               capacidad: ""
-           },
-           {
-               tipo: "VMAX",
-               noParte: "403-0075-02",
-               desc: "HARD DRIVE_1TB 7.2K DISK SATA-300 3.5",
-               componente: "Drive",
-               sede: "Querétaro",
-               ubicacion: "",
-               min_stock: 1,
-               cantidad: 2,
-               max_stock: 3,
-               reorden: 3,
-               proveedor: "",
-               sendor: "",
-               pn_vendor: "",
-               sn_vendor: "",
-               sn_emc: "",
-               capacidad: ""
-           },
-           {
-               tipo: "VMAX",
-               noParte: "403-0075-02",
-               desc: "HARD DRIVE_1TB 7.2K DISK SATA-300 3.5",
-               componente: "Drive",
-               sede: "Querétaro",
-               ubicacion: "",
-               min_stock: 1,
-               cantidad: 2,
-               max_stock: 3,
-               reorden: 3,
-               proveedor: "",
-               sendor: "",
-               pn_vendor: "",
-               sn_vendor: "",
-               sn_emc: "",
-               capacidad: ""
-           },
-           {
-               tipo: "VMAX",
-               noParte: "403-0075-02",
-               desc: "HARD DRIVE_1TB 7.2K DISK SATA-300 3.5",
-               componente: "Drive",
-               sede: "Querétaro",
-               ubicacion: "",
-               min_stock: 1,
-               cantidad: 2,
-               max_stock: 3,
-               reorden: 3,
-               proveedor: "",
-               sendor: "",
-               pn_vendor: "",
-               sn_vendor: "",
-               sn_emc: "",
-               capacidad: ""
-           },
-           {
-               tipo: "VMAX",
-               noParte: "403-0075-02",
-               desc: "HARD DRIVE_1TB 7.2K DISK SATA-300 3.5",
-               componente: "Drive",
-               sede: "Querétaro",
-               ubicacion: "",
-               min_stock: 1,
-               cantidad: 2,
-               max_stock: 3,
-               reorden: 3,
-               proveedor: "",
-               sendor: "",
-               pn_vendor: "",
-               sn_vendor: "",
-               sn_emc: "",
-               capacidad: ""
-           },
-           {
-               tipo: "VMAX",
-               noParte: "403-0075-02",
-               desc: "HARD DRIVE_1TB 7.2K DISK SATA-300 3.5",
-               componente: "Drive",
-               sede: "Querétaro",
-               ubicacion: "",
-               min_stock: 1,
-               cantidad: 2,
-               max_stock: 3,
-               reorden: 3,
-               proveedor: "",
-               sendor: "",
-               pn_vendor: "",
-               sn_vendor: "",
-               sn_emc: "",
-               capacidad: ""
-           },
-           {
-               tipo: "VMAX",
-               noParte: "403-0075-02",
-               desc: "HARD DRIVE_1TB 7.2K DISK SATA-300 3.5",
-               componente: "Drive",
-               sede: "Querétaro",
-               ubicacion: "",
-               min_stock: 1,
-               cantidad: 2,
-               max_stock: 3,
-               reorden: 3,
-               proveedor: "",
-               sendor: "",
-               pn_vendor: "",
-               sn_vendor: "",
-               sn_emc: "",
-               capacidad: ""
-           },
-           {
-               tipo: "VMAX",
-               noParte: "403-0075-02",
-               desc: "HARD DRIVE_1TB 7.2K DISK SATA-300 3.5",
-               componente: "Drive",
-               sede: "Querétaro",
-               ubicacion: "",
-               min_stock: 1,
-               cantidad: 2,
-               max_stock: 3,
-               reorden: 3,
-               proveedor: "",
-               sendor: "",
-               pn_vendor: "",
-               sn_vendor: "",
-               sn_emc: "",
-               capacidad: ""
-           }
-       ]
-    */
-
-    const handleShow = (accion, readOnly, id) => {
-
-
-    }
-
     const handleSearch = (e) => {
         console.log(e.target.value)
         setBusqueda(e.target.value)
 
         const filtered = productos.filter(item => Object.values(item).some(value => String(value).toLocaleLowerCase().includes(e.target.value)))
-    
+
         setFilteredData(filtered)
     }
 
@@ -273,42 +105,43 @@ export const Productos = () => {
                     </Col>
                     <Col lg={6}></Col>
                     <Col lg={3} >
-                        {isInIframe ? <></> : <Button variant="warning" onClick={() => openModalForCreate()}>Agregar Producto</Button>}
+                    {(profile === 'atalait-application-admin' || profile==='atalait-administracion' || profile==='atalait-gestion') ? (<Button variant="warning" onClick={() => openModalForCreate()}>Agregar Producto</Button>) : (<div></div>)}
                     </Col>
                 </Row>
             </Container>
             <div class="table-responsive" >
                 <Table className="table p-4 small " variant striped bordered hover>
                     <thead>
-                        {isInIframe ? (
+                        {profile === 'sat' ? (
                             <tr>
-                                <th style={{width: "30%"}} >Número de parte</th>
-                                <th style={{width: "40%"}}>Descripción</th>
-                                <th style={{width: "20%"}}>Ubicación</th>
-                                <th style={{width: "10%"}}>Cantidad</th>
+                                <th style={{ width: "30%" }} >Número de parte</th>
+                                <th style={{ width: "40%" }}>Descripción</th>
+                                <th style={{ width: "20%" }}>Ubicación</th>
+                                <th style={{ width: "10%" }}>Cantidad</th>
                             </tr>) :
-                            (<tr style={{fontSize:"12px"}}>
-                                <th style={{width: "5%"}}>Tipo</th>
-                                <th style={{width: "5%"}}>Número de parte</th>
-                                <th style={{width: "10%"}}>Descripción</th>
-                                <th style={{width: "10%"}}>Componente</th>
-                                <th style={{width: "2%"}}>Sede</th>
-                                <th style={{width: "10%"}}>Ubicación</th>
-                                <th style={{width: "5%"}}>Stock mínimo</th>
-                                <th style={{width: "5%"}}>Cantidad</th>
-                                <th style={{width: "5%"}}>Stock máximo</th>
-                                <th style={{width: "5%"}}>Reorden</th>
-                                <th style={{width: "10%"}}>Proveedor</th>
-                                <th style={{width: "5%"}}>Sendor</th>
-                                <th style={{width: "5%"}}>Pn Vendor</th>
-                                <th style={{width: "5%"}}>Sn Vendor</th>
-                                <th style={{width: "5%"}}>Sn EMC</th>
-                                <th style={{width: "5%"}}>Capacidad</th>
-                                <th className="fixed-col">Editar</th>
+                            (<tr style={{ fontSize: "12px" }}>
+                                <th style={{ width: "5%" }}>Tipo</th>
+                                <th style={{ width: "5%" }}>Número de parte</th>
+                                <th style={{ width: "10%" }}>Descripción</th>
+                                <th style={{ width: "10%" }}>Componente</th>
+                                <th style={{ width: "2%" }}>Sede</th>
+                                <th style={{ width: "10%" }}>Ubicación</th>
+                                <th style={{ width: "5%" }}>Stock mínimo</th>
+                                <th style={{ width: "5%" }}>Cantidad</th>
+                                <th style={{ width: "5%" }}>Stock máximo</th>
+                                <th style={{ width: "5%" }}>Reorden</th>
+                                <th style={{ width: "10%" }}>Proveedor</th>
+                                <th style={{ width: "5%" }}>Sendor</th>
+                                <th style={{ width: "5%" }}>Pn Vendor</th>
+                                <th style={{ width: "5%" }}>Sn Vendor</th>
+                                <th style={{ width: "5%" }}>Sn EMC</th>
+                                <th style={{ width: "5%" }}>Capacidad</th>
+                                {(profile === 'atalait-application-admin' || profile==='atalait-administracion' || profile==='atalait-gestion') ? (<th className="fixed-col">Editar</th>) : (<div></div>)}
+
                             </tr>)}
                     </thead>
                     <tbody>
-                        {isInIframe ? (
+                        {profile === 'sat' ? (
                             filteredData.map((producto, index) => (
                                 <tr>
                                     <td>{producto.noParte}</td>
@@ -320,7 +153,7 @@ export const Productos = () => {
 
                         ) : (
                             filteredData.map((producto, index) => (
-                                <tr style={{fontSize:"12px"}}>
+                                <tr style={{ fontSize: "12px" }}>
                                     <td >{producto.tipo}</td>
                                     <td>{producto.noParte}</td>
                                     <td>{producto.desc}</td>

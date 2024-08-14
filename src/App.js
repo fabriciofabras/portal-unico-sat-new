@@ -10,11 +10,10 @@ import { Mesa } from "./components/panelUnico/Mesa";
 import { Inventarios } from "./components/panelUnico/Inventarios";
 import { Login } from "./components/panelUnico/Login";
 import './App.css';
+import { UserProfileProvider } from "./UserProfileContext";
 
 
 export default function App() {
-
-  const UserContext = createContext('sat');
 
   const [opcionSeleccionada, setOpcionSeleccionada] = useState('default');
 
@@ -22,7 +21,7 @@ export default function App() {
 
 
   const handleLogueado = (conectado) => {
-    console.log("conectado",conectado)
+    console.log("conectado", conectado)
     setLogueado(conectado)
   }
 
@@ -32,9 +31,8 @@ export default function App() {
 
   return (
     <main className="text-gray-400 bg-gray-900 body-font">
-
-      {logueado ? (<div><NavBar onOpcionSeleccionada={handleOpcionSeleccionada} handleLogueado={handleLogueado} />
-        <UserContext.Provider value="sat">
+      <UserProfileProvider>     {logueado ? (<div><NavBar onOpcionSeleccionada={handleOpcionSeleccionada} handleLogueado={handleLogueado} />
+        <div value="sat">
           {opcionSeleccionada === 'repositorio' && <Repositorio />}
           {opcionSeleccionada === 'heatmap' && <HeatMap />}
           {opcionSeleccionada === 'default' && <About />}
@@ -42,9 +40,11 @@ export default function App() {
           {opcionSeleccionada === 'inventarios' && <Inventarios />}
           {opcionSeleccionada === 'mesa' && <Mesa />}
           {/* Agrega más condiciones según las opciones disponibles */}
-        </UserContext.Provider></div>) : (
+        </div></div>) : (
         <Login handleLogueado={handleLogueado}></Login>
       )}
+
+      </UserProfileProvider>
 
 
       <Projects />

@@ -2,14 +2,14 @@ import { Card, Image, OverlayTrigger, Stack, Tooltip } from "react-bootstrap"
 import { Arrow90degRight, ArrowRight, Basket2, Binoculars, ClipboardCheck, House, PeopleFill } from "react-bootstrap-icons"
 import Man from "../../assets/man.png"
 import { createContext, useContext } from "react"
+import { UserProfileContext } from "../../UserProfileContext"
 
-export const Menu = ({onOpcionSeleccionada}) => {
+export const Menu = ({ onOpcionSeleccionada }) => {
 
-    const UserContext = createContext(null)
+    const { profile } = useContext(UserProfileContext);
 
-    const user= useContext(UserContext)
 
-    console.log('user',user)
+    console.log('user', profile)
 
     const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
@@ -20,7 +20,7 @@ export const Menu = ({onOpcionSeleccionada}) => {
     const handleClick = (opcion) => {
         console.log("handleclick", opcion)
         onOpcionSeleccionada(opcion);
-      };
+    };
 
     return (
         <Stack>
@@ -50,24 +50,25 @@ export const Menu = ({onOpcionSeleccionada}) => {
                 >
                     <House className="icon-link icon-link-hover" size={50} ></House>
                 </OverlayTrigger>
-               
+
             </div>
-            <div className="p-2">
-                <OverlayTrigger 
+            {profile === "sat" ? (<div></div>) : (<div className="p-2">
+                <OverlayTrigger
                     placement="right"
                     delay={{ show: 0, hide: 400 }}
                     overlay={renderTooltip("Usuarios")}
                 >
-                        <PeopleFill onClick={() => handleClick(2)} className="icon-link icon-link-hover"  href="#" size={50} />
+                    <PeopleFill onClick={() => handleClick(2)} className="icon-link icon-link-hover" href="#" size={50} />
                 </OverlayTrigger>
-            </div>
+            </div>)}
+
             <div className="p-2">
-                <OverlayTrigger  
+                <OverlayTrigger
                     placement="right"
                     delay={{ show: 0, hide: 400 }}
                     overlay={renderTooltip("Productos")}
                 >
-                        <Basket2 onClick={() => handleClick(1)}  className="icon-link icon-link-hover" size={50}/>
+                    <Basket2 onClick={() => handleClick(1)} className="icon-link icon-link-hover" size={50} />
 
                 </OverlayTrigger>
             </div>
@@ -78,7 +79,7 @@ export const Menu = ({onOpcionSeleccionada}) => {
                     overlay={renderTooltip("Solicitud")}
                 >
 
-                        <ClipboardCheck className="icon-link icon-link-hover" size={50} />
+                    <ClipboardCheck className="icon-link icon-link-hover" size={50} />
                 </OverlayTrigger>
             </div>
             <div className="p-2">
@@ -88,7 +89,7 @@ export const Menu = ({onOpcionSeleccionada}) => {
                     overlay={renderTooltip("Tracking")}
                 >
 
-                        <Binoculars className="icon-link icon-link-hover" size={50} />
+                    <Binoculars className="icon-link icon-link-hover" size={50} />
                 </OverlayTrigger>
             </div>
             <div className="p-2">
@@ -98,7 +99,7 @@ export const Menu = ({onOpcionSeleccionada}) => {
                     overlay={renderTooltip("Salir")}
                 >
 
-                        <ArrowRight className="icon-link icon-link-hover" size={50} />
+                    <ArrowRight className="icon-link icon-link-hover" size={50} />
                 </OverlayTrigger>
             </div>
         </Stack>
