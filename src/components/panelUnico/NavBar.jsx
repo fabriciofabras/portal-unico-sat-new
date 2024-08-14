@@ -36,7 +36,7 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
             <ul className="menu  justify-center">
               <li>
                 <p className="text-3xl font-semibold pt-3 text-white">
-                  Panel único de servicio SARI2 Partida 1
+                  Panel Único de Administración del Servicio SARI2 Partida 1
                 </p>
               </li>
             </ul>
@@ -100,7 +100,7 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
           </a> */}
               <ul className="menu">
                 <li className="menu-item dropdown">
-                  <a href="#heatmap" onClick={() => handleClick('heatmap')} className="mr-1 hover:text-white p-2">
+                  <a href="https://tia.atalait.com.mx:5133/tia/login/?next=/" target="_blank" className="hover:text-white text-sm p-3">
                     HeatMap
                   </a>
                 </li>

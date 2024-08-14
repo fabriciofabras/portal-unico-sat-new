@@ -1,5 +1,5 @@
 import React from "react";
-import inicio_panel from '../assets/inicio_panel.png'
+import inicio_panel from '../../assets/inicio_panel.png'
 export const About = () => {
 
   const smoothScroll = (e, id) => {

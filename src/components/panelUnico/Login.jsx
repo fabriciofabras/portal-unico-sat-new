@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Container, Button, Col, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form"
-import { validateUser } from '../helpers/validateUser';
+import { validateUser } from '../../helpers/panelUnico/validateUser';
 
 export const Login = ({ handleLogueado }) => {
 
@@ -52,7 +52,7 @@ export const Login = ({ handleLogueado }) => {
       <Row className="w-100 justify-content-center">
       <Col xs={12} md={6} lg={4}>
       <div className="border p-4 rounded bg-light shadow">
-      <h2 className="text-center mb-4">Panel Único de Servicio</h2>
+      <h2 className="text-center mb-4">Panel Único de Administración del Servicio SARI2 Partida 1</h2>
           <Form onSubmit={login}>
             <Form.Group className="mb-3" >
               <Form.Label>Email/usuario</Form.Label>

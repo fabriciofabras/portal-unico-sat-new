@@ -1,22 +1,25 @@
-import React, { useState } from "react";
-import { NavBar } from "./components/NavBar";
-import { About } from "./components/About";
-import { Projects } from "./components/Projects";
-import { Contact } from "./components/Contact";
-import { Repositorio } from "./components/Repositorio";
-import { HeatMap } from "./components/HeatMap";
-import { Monitoreo } from "./components/Monitoreo";
-import { Mesa } from "./components/Mesa";
-import { Inventarios } from "./components/Inventarios";
-import { Login } from "./components/Login";
+import React, { createContext, useState } from "react";
+import { NavBar } from "./components/panelUnico/NavBar";
+import { About } from "./components/panelUnico/About";
+import { Projects } from "./components/panelUnico/Projects";
+import { Contact } from "./components/panelUnico/Contact";
+import { Repositorio } from "./components/panelUnico/Repositorio";
+import { HeatMap } from "./components/panelUnico/HeatMap";
+import { Monitoreo } from "./components/panelUnico/Monitoreo";
+import { Mesa } from "./components/panelUnico/Mesa";
+import { Inventarios } from "./components/panelUnico/Inventarios";
+import { Login } from "./components/panelUnico/Login";
 import './App.css';
 
 
 export default function App() {
 
+  const UserContext = createContext('sat');
+
   const [opcionSeleccionada, setOpcionSeleccionada] = useState('default');
 
   const [logueado, setLogueado] = useState(false);
+
 
   const handleLogueado = (conectado) => {
     console.log("conectado",conectado)
@@ -31,7 +34,7 @@ export default function App() {
     <main className="text-gray-400 bg-gray-900 body-font">
 
       {logueado ? (<div><NavBar onOpcionSeleccionada={handleOpcionSeleccionada} handleLogueado={handleLogueado} />
-        <div>
+        <UserContext.Provider value="sat">
           {opcionSeleccionada === 'repositorio' && <Repositorio />}
           {opcionSeleccionada === 'heatmap' && <HeatMap />}
           {opcionSeleccionada === 'default' && <About />}
@@ -39,7 +42,7 @@ export default function App() {
           {opcionSeleccionada === 'inventarios' && <Inventarios />}
           {opcionSeleccionada === 'mesa' && <Mesa />}
           {/* Agrega más condiciones según las opciones disponibles */}
-        </div></div>) : (
+        </UserContext.Provider></div>) : (
         <Login handleLogueado={handleLogueado}></Login>
       )}
 
