@@ -5,7 +5,7 @@ export const validateUser = (formData) => {
     const validateUser = async () => {
     
       try {
-         const response = await fetch(`https://${URL_SERVER}:3001/login`, {
+         const response = await fetch(`https://${URL_SERVER}/login`, {
             method: 'POST',
           headers: {
             'Content-Type': 'application/json',
