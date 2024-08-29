@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // Middleware para parsear d
 
 // URL de conexión a MongoDB
 
- const uri = 'mongodb://127.0.0.1:27017/';
+ const uri = 'mongodb://10.30.39.7:27017/';
  
  // Nombre de la base de datos
 const dbName = 'inventarioDB';
@@ -286,7 +286,9 @@ app.put('/updateUsuario/:id', async (req, res) => {
 const sslOptions = {
   key: fs.readFileSync(path.join(__dirname, 'sari2p1.atalait.com.mx/private.key')),
   cert: fs.readFileSync(path.join(__dirname, 'sari2p1.atalait.com.mx/certificate.crt')),
-  ca: fs.readFileSync(path.join(__dirname, 'sari2p1.atalait.com.mx/ca_bundle.crt')) // si tienes un archivo de cadena de certificados
+  ca: fs.readFileSync(path.join(__dirname, 'sari2p1.atalait.com.mx/ca_bundle.crt')),
+  secureOptions: require('constants').SSL_OP_NO_TLSv1 | require('constants').SSL_OP_NO_TLSv1_1
+ // si tienes un archivo de cadena de certificados
 };
 
 // Middleware y rutas de tu aplicación

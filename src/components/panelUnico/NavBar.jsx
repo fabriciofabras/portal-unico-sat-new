@@ -1,9 +1,12 @@
 import { ArrowRightIcon } from "@heroicons/react/solid";
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Col, Row } from "react-bootstrap";
+import { UserProfileContext } from "../../UserProfileContext";
 
 export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
+
+ const { profile } = useContext(UserProfileContext);
 
   const handleClick = (opcion) => {
     onOpcionSeleccionada(opcion);
@@ -71,12 +74,7 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
               </ul>
               <ul className="menu">
                 <li className="menu-item dropdown">
-                  <a href="#">Repositorio</a>
-                  <ul className="dropdown-menu">
-                    <li><a href="https://atalait.sharepoint.com/sites/panelsari2p1/Repositorio%20de%20informacin/Forms/AllItems.aspx?viewid=f20b7d40%2D3bd8%2D48bf%2D8488%2D6e183c5e8085" target="_blank">Repositorio de Información</a></li>
-                    <li><a href="https://atalait.sharepoint.com/sites/panelsari2p1/Otra%20informacin/Forms/AllItems.aspx?csf=1&web=1&e=Db3NPq&cid=4209bcc8%2D81e9%2D4705%2Db94e%2D6d376eb3a3c9&FolderCTID=0x012000F022AB04352F8E49A32528F5807B4D24&id=%2Fsites%2Fpanelsari2p1%2FOtra%20informacin%2F04%20Monitoreo%20y%20control%2FInventarios" target="_blank">Inventarios</a></li>
-                    <li><a href="https://atalait.sharepoint.com/sites/panelsari2p1/Otra%20informacin/Forms/AllItems.aspx?viewid=93c323ea%2D0274%2D4b99%2Db68c%2D5d426003803f" target="_blank">Otra información</a></li>
-                  </ul>
+                  <a href="https://atalait.sharepoint.com/sites/panelsari2p1/Repositorio%20de%20informacin/Forms/AllItems.aspx?viewid=f20b7d40%2D3bd8%2D48bf%2D8488%2D6e183c5e8085" target="_blank">Repositorio de Información</a>
                 </li>
 
                 <li className="menu-item dropdown">
@@ -87,8 +85,8 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
                         Infraestructura
                       </a>
                     </li>
-                    <li><a href="https://201.159.80.2/" target="_blank">Enlace de terceros</a></li>
-                    <li><a href="https://atalait.sharepoint.com/sites/panelsari2p1/Monitoreo%20y%20Mesa%20de%20Ayuda/Forms/AllItems.aspx?viewid=7eb3a40d%2Ddde6%2D457f%2Dbb30%2D846a18447a53" target="_blank">Monitoreo y Mesa de Ayuda</a></li>              </ul>
+                    <li>{profile === "sat" ? (<div></div>) : (<a href="https://201.159.80.2/" target="_blank">Enlace de terceros</a>)}</li>
+                    <li>{profile === "sat" ? (<div></div>) : (<a href="https://atalait.sharepoint.com/sites/panelsari2p1/Monitoreo%20y%20Mesa%20de%20Ayuda/Forms/AllItems.aspx?viewid=7eb3a40d%2Ddde6%2D457f%2Dbb30%2D846a18447a53" target="_blank">Monitoreo y Mesa de Ayuda</a>)}</li>              </ul>
                 </li>
 
               </ul>
@@ -122,9 +120,9 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
               </ul>
               <ul className="menu">
                 <li className="menu-item dropdown">
-                  <a href="https://atalait.service-now.com/navpage.do" target="_blank" className="hover:text-white text-sm p-3">
+                  {profile === "sat" ? (<div></div>) : (<a href="https://atalait.service-now.com/navpage.do" target="_blank" className="hover:text-white text-sm p-3">
                     Mesa de Servicio Atalait
-                  </a></li></ul>
+                  </a>)}</li></ul>
 
              
             </nav>

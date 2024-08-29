@@ -1,2 +1,1 @@
-export const URL_SERVER = "localhost"
-export const URL_BD = "127.0.0.1"
+export const URL_SERVER = "sari2p1.atalait.com.mx"

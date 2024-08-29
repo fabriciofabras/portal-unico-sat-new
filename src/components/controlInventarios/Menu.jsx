@@ -42,7 +42,7 @@ export const Menu = ({ onOpcionSeleccionada }) => {
 
 
             </div>
-            <div className="p-2" >
+         {/*  <div className="p-2" >
                 <OverlayTrigger
                     placement="right"
                     delay={{ show: 0, hide: 400 }}
@@ -51,7 +51,7 @@ export const Menu = ({ onOpcionSeleccionada }) => {
                     <House className="icon-link icon-link-hover" size={50} ></House>
                 </OverlayTrigger>
 
-            </div>
+            </div>*/}
             {profile === "sat" ? (<div></div>) : (<div className="p-2">
                 <OverlayTrigger
                     placement="right"
@@ -72,7 +72,7 @@ export const Menu = ({ onOpcionSeleccionada }) => {
 
                 </OverlayTrigger>
             </div>
-            <div className="p-2 align-items-center">
+           {/* <div className="p-2 align-items-center">
                 <OverlayTrigger
                     placement="right"
                     delay={{ show: 0, hide: 400 }}
@@ -101,7 +101,7 @@ export const Menu = ({ onOpcionSeleccionada }) => {
 
                     <ArrowRight className="icon-link icon-link-hover" size={50} />
                 </OverlayTrigger>
-            </div>
+            </div>*/}
         </Stack>
     )
 }
