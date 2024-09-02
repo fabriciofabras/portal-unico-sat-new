@@ -2,20 +2,32 @@
 @tailwind components;
 @tailwind utilities; */
 
-body {
+body,
+html {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  
-  code {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
-  }
-  
+        monospace;
+}
+
+.main-container {
+    min-height: 100vh;
+    /* Hace que el contenedor ocupe al menos la altura completa de la ventana */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Esto distribuye el contenido correctamente */
+
+}
+
 .navbar {
     background-color: #333;
 }
@@ -68,4 +80,10 @@ body {
 .menu-item.dropdown:hover .dropdown-menu {
     background-color: rgb(31 41 55);
     display: block;
+}
+
+/* Opcional: Ajuste adicional */
+footer {
+    margin-top: auto; /* Esto empuja el footer hacia abajo solo si es necesario */
+    padding-bottom: 20px; /* Agrega espacio para el contenido final sin generar scroll */
 }

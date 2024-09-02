@@ -4,7 +4,7 @@ export const Monitoreo = () => {
 
   return (
     <section id="about">
-      <div className="container flex px-5 py-3 md:flex-row flex-col items-center">
+      <div className="container flex px-1 py-3 md:flex-row flex-col items-center">
 
       
          <iframe  style={{width: 'inherit'}}

@@ -49,7 +49,7 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
                 <li className="menu-item dropdown">
                   <a onClick={handleSalir}
                     href="#"
-                    className="hover:text-white text-2x1 p-4">
+                    className="hover:text-white text-2x1 p-F4">
                     Salir
                   </a>
                   {/*                     <ArrowRightIcon className="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0" />
@@ -59,7 +59,7 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
         </Row>
         </div>
 
-        <Row className="w-100 justify-content-center justify-center">
+        <Row className="w-100 bg-[#333] justify-content-center justify-center">
           <Col xs={12} md={12} lg={12}>
             <nav className="md:mr-auto md:ml-2 md:py-1 flex flex-wrap items-center text-base justify-center">
               {/*   <a href="https://atalait.sharepoint.com/:f:/r/sites/panelsari2p1/Otra%20informacin/04%20Monitoreo%20y%20control/Inventarios?csf=1&web=1&e=Db3NPq" target="_blank" className="mr-1 hover:text-white">
@@ -107,6 +107,13 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
                 <li className="menu-item dropdown">
                   <a href="#stockdepartes" onClick={() => handleClick('inventarios')} className="mr-1 hover:text-white p-2">
                     Stock de Partes
+                  </a>
+                </li>
+              </ul>
+              <ul className="menu">
+                <li className="menu-item dropdown">
+                  <a href="#stockdepartes" onClick={() => handleClick('cmdb')} className="mr-1 hover:text-white p-2">
+                    CMDB
                   </a>
                 </li>
               </ul>

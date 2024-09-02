@@ -17,14 +17,17 @@ app.use(bodyParser.urlencoded({ extended: true })); // Middleware para parsear d
 
 // URL de conexión a MongoDB
 
- const uri = 'mongodb://10.30.39.7:27017/';
- 
- // Nombre de la base de datos
+const uri = 'mongodb://127.0.0.1:27017/';
+
+// Nombre de la base de datos
 const dbName = 'inventarioDB';
 
 let db;
 let productosCollection;
 let usuariosCollection;
+let almacenamientoCollection;
+let servidoresCollection;
+let telecomunicacionesCollection;
 
 // Conectar a MongoDB y configurar la colección
 MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -32,6 +35,10 @@ MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     console.log('Conectado a la base de datos MongoDB');
     db = client.db(dbName);
     productosCollection = db.collection('productos');
+    almacenamientoCollection = db.collection('almacenamiento');
+    usuariosCollection = db.collection('usuarios');
+    telecomunicacionesCollection = db.collection('telecomunicaciones');
+    servidoresCollection = db.collection('servidores');
   })
   .catch(error => console.error(error));
 
@@ -56,6 +63,51 @@ app.get('/productosReduced', async (req, res) => {
   try {
     const productos = await productosCollection.find().toArray();
     res.json(productos);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+app.get('/almacenamiento', async (req, res) => {
+
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  try {
+    const almacenamiento = await almacenamientoCollection.find().toArray();
+    res.json(almacenamiento);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+app.get('/servidores', async (req, res) => {
+
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  try {
+    const servidores = await servidoresCollection.find().toArray();
+    res.json(servidores);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+app.get('/telecomunicaciones', async (req, res) => {
+
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  try {
+    const telecomunicaciones = await telecomunicacionesCollection.find().toArray();
+    res.json(telecomunicaciones);
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -157,15 +209,6 @@ app.get('/usuario/:id', async (req, res) => {
 }
 );
 
-// Conectar a MongoDB y configurar la colección
-MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(client => {
-    console.log('Conectado a la base de datos MongoDB');
-    db = client.db(dbName);
-    usuariosCollection = db.collection('usuarios');
-  })
-  .catch(error => console.error(error));
-
 app.post('/login', async (req, res) => {
 
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -183,17 +226,46 @@ app.post('/login', async (req, res) => {
     const item = await usuariosCollection.findOne({ usuario });
     console.log("item", item)
     let mensaje;
+
+    const objectId = new ObjectId(item._id);
+
     if (item != null) {
 
       console.log("IF")
-      if (item.password == password) {
-        mensaje = "El usuario ha sido logueado"
+      if (item.password === password) {
+
+        if (item.logged === false) {
+          mensaje = "El usuario ha sido logueado"
+
+          try {
+            const result = await usuariosCollection.findOneAndUpdate(
+              { _id: objectId },
+              { $set: { logged: true } }, // otros campos
+              {
+                returnDocument: 'after', // Devuelve el documento después de la actualización
+                upsert: false // No crear un documento si no se encuentra
+              }
+            );
+
+            console.log("result", result)
+            if (!result) {
+/*             return res.status(404).send('Producto no encontrado');
+ */          }
+
+/*           res.status(200).json("El producto se actualizó correctamente");
+ */        } catch (error) {
+/*           res.status(500).json({ error: 'Error actualizando el producto' });
+ */        }
+        }else{
+          mensaje="El usuario ya se encuentra loggeado,¿Desea iniciar sesión en esta ventana?";
+        }
+
       } else {
         mensaje = "El usuario y/o contraseña son incorrectos"
       }
       // res.json(item);
 
-      return res.status(200).json({ message: mensaje, perfil:item.perfil });
+      return res.status(200).json({ message: mensaje, perfil: item.perfil });
 
     } else {
       return res.status(404).json({ message: 'El usuario no existe' });
@@ -288,7 +360,7 @@ const sslOptions = {
   cert: fs.readFileSync(path.join(__dirname, 'sari2p1.atalait.com.mx/certificate.crt')),
   ca: fs.readFileSync(path.join(__dirname, 'sari2p1.atalait.com.mx/ca_bundle.crt')),
   secureOptions: require('constants').SSL_OP_NO_TLSv1 | require('constants').SSL_OP_NO_TLSv1_1
- // si tienes un archivo de cadena de certificados
+  // si tienes un archivo de cadena de certificados
 };
 
 // Middleware y rutas de tu aplicación

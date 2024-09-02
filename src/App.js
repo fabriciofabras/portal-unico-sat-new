@@ -8,6 +8,7 @@ import { HeatMap } from "./components/panelUnico/HeatMap";
 import { Monitoreo } from "./components/panelUnico/Monitoreo";
 import { Mesa } from "./components/panelUnico/Mesa";
 import { Inventarios } from "./components/panelUnico/Inventarios";
+import { CMDB } from "./components/panelUnico/CMDB";
 import { Login } from "./components/panelUnico/Login";
 import './App.css';
 import { UserProfileProvider } from "./UserProfileContext";
@@ -30,14 +31,15 @@ export default function App() {
   };
 
   return (
-    <main className="text-gray-400 bg-gray-900 body-font">
+    <main className="main-container text-gray-400 bg-gray-900 body-font">
       <UserProfileProvider>     {logueado ? (<div><NavBar onOpcionSeleccionada={handleOpcionSeleccionada} handleLogueado={handleLogueado} />
-        <div value="sat">
+        <div>
           {opcionSeleccionada === 'repositorio' && <Repositorio />}
           {opcionSeleccionada === 'heatmap' && <HeatMap />}
           {opcionSeleccionada === 'default' && <About />}
           {opcionSeleccionada === 'monitoreo' && <Monitoreo />}
           {opcionSeleccionada === 'inventarios' && <Inventarios />}
+          {opcionSeleccionada === 'cmdb' && <CMDB />}
           {opcionSeleccionada === 'mesa' && <Mesa />}
           {/* Agrega más condiciones según las opciones disponibles */}
         </div></div>) : (
@@ -47,8 +49,8 @@ export default function App() {
       </UserProfileProvider>
 
 
-      <Projects />
-      {/* <Skills/>
+{/*       <Projects />
+ */}      {/* <Skills/>
       <Contact/> */}
     </main>
   )

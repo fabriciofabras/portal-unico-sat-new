@@ -1,8 +1,8 @@
 import React from "react";
 import inicio_panel from '../../assets/inicio_panel.png'
 import { URL_SERVICE } from "../../properties";
-import {Dashboard} from "../controlInventarios/Dashboard"
-export const Inventarios = () => {
+import {Dashboard} from "../cmdb/Dashboard"
+export const CMDB = () => {
 
   return (
     <section id="about">
