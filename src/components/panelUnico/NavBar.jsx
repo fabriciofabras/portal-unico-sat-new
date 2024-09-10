@@ -3,17 +3,24 @@ import React from "react";
 import { useState, useContext } from "react";
 import { Col, Row } from "react-bootstrap";
 import { UserProfileContext } from "../../UserProfileContext";
+import { logoutUser } from "../../helpers/panelUnico/logoutUser";
 
 export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
 
- const { profile } = useContext(UserProfileContext);
+  const { profile } = useContext(UserProfileContext);
 
   const handleClick = (opcion) => {
     onOpcionSeleccionada(opcion);
   };
 
+  const logout = () => {
+    console.log("profile",profile)
+    logoutUser(profile.usuarioSesion.insertedId);
+  }
+
   const handleSalir = () => {
-    handleLogueado(false)
+    handleLogueado(false);
+    logout();
   }
 
   const [language, setLanguage] = useState('ES');
@@ -33,19 +40,19 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
       <div className="flex flex-wrap p-1 flex-col md:flex-row justify-center">
         <div className="w-100 bg-gradient-to-r from-yellow-300 to-green-500 ...">
 
-        <Row>
-          <Col xs={1} md={1} lg={1}></Col>
-          <Col xs={10} md={10} lg={10}>
-            <ul className="menu  justify-center">
-              <li>
-                <p className="text-3xl font-semibold pt-3 text-white">
-                  Panel Único de Administración del Servicio SARI2 Partida 1
-                </p>
-              </li>
-            </ul>
-          </Col>
-          <Col xs={1} md={1} lg={1}>
-          <ul className="menu">
+          <Row>
+            <Col xs={1} md={1} lg={1}></Col>
+            <Col xs={10} md={10} lg={10}>
+              <ul className="menu  justify-center">
+                <li>
+                  <p className="text-3xl font-semibold pt-3 text-white">
+                    Panel Único de Administración del Servicio SARI2 Partida 1
+                  </p>
+                </li>
+              </ul>
+            </Col>
+            <Col xs={1} md={1} lg={1}>
+              <ul className="menu">
                 <li className="menu-item dropdown">
                   <a onClick={handleSalir}
                     href="#"
@@ -55,8 +62,8 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
                   {/*                     <ArrowRightIcon className="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0" />
  */}
                 </li></ul>
-          </Col>
-        </Row>
+            </Col>
+          </Row>
         </div>
 
         <Row className="w-100 bg-[#333] justify-content-center justify-center">
@@ -65,7 +72,7 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
               {/*   <a href="https://atalait.sharepoint.com/:f:/r/sites/panelsari2p1/Otra%20informacin/04%20Monitoreo%20y%20control/Inventarios?csf=1&web=1&e=Db3NPq" target="_blank" className="mr-1 hover:text-white">
             Repositorio de Información
           </a> */}
-          <ul className="menu">
+              <ul className="menu">
                 <li className="menu-item dropdown">
                   <a href="#" onClick={() => handleClick('default')} className="mr-1 hover:text-white p-2">
                     Inicio
@@ -85,8 +92,8 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
                         Infraestructura
                       </a>
                     </li>
-                    <li>{profile === "sat" ? (<div></div>) : (<a href="https://201.159.80.2/" target="_blank">Enlace de terceros</a>)}</li>
-                    <li>{profile === "sat" ? (<div></div>) : (<a href="https://atalait.sharepoint.com/sites/panelsari2p1/Monitoreo%20y%20Mesa%20de%20Ayuda/Forms/AllItems.aspx?viewid=7eb3a40d%2Ddde6%2D457f%2Dbb30%2D846a18447a53" target="_blank">Monitoreo y Mesa de Ayuda</a>)}</li>              </ul>
+                    <li>{profile.perfil === "sat" ? (<div></div>) : (<a href="https://201.159.80.2/" target="_blank">Enlace de terceros</a>)}</li>
+                    <li>{profile.perfil === "sat" ? (<div></div>) : (<a href="https://atalait.sharepoint.com/sites/panelsari2p1/Monitoreo%20y%20Mesa%20de%20Ayuda/Forms/AllItems.aspx?viewid=7eb3a40d%2Ddde6%2D457f%2Dbb30%2D846a18447a53" target="_blank">Monitoreo y Mesa de Ayuda</a>)}</li>              </ul>
                 </li>
 
               </ul>
@@ -127,11 +134,11 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado }) => {
               </ul>
               <ul className="menu">
                 <li className="menu-item dropdown">
-                  {profile === "sat" ? (<div></div>) : (<a href="https://atalait.service-now.com/navpage.do" target="_blank" className="hover:text-white text-sm p-3">
+                  {profile.perfil === "sat" ? (<div></div>) : (<a href="https://atalait.service-now.com/navpage.do" target="_blank" className="hover:text-white text-sm p-3">
                     Mesa de Servicio Atalait
                   </a>)}</li></ul>
 
-             
+
             </nav>
 
           </Col>

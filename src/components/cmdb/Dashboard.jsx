@@ -15,7 +15,7 @@ export const Dashboard = () => {
 
 
     return (
-        <div className="w-100 m-0">
+        <div className="titles w-100 m-0">
             <Row>
                 <Col xl={2} lg={2}>
                     <Menu onOpcionSeleccionada={onOpcionSeleccionada}>

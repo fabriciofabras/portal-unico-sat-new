@@ -25,7 +25,7 @@ export const altaProducto = (formData) => {
         capacidad: formData.capacidad
     }
 
-        fetch(`http:${URL_SERVER}/altaProducto`, {
+        fetch(`https:${URL_SERVER}/altaProducto`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

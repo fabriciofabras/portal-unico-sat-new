@@ -9,12 +9,12 @@ export const getServidores = (table) => {
         const results = await resp.json();
 
         let cmdbItems=  results.map(servidor => ({
+            noSerie: servidor.noSerie,
             nombre: servidor.nombre,
             descipcionCI: servidor.descipcionCI,
-            noSerie: servidor.noSerie,
             mantenimiento: servidor.mantenimiento,
             empresa: servidor.empresa,
-            estado: servidor.estado,
+            estadoCI:servidor.estadoCI,
             impacto: servidor.impacto,
             urgencia: servidor.urgencia,
             prioridad: servidor.prioridad,
@@ -27,6 +27,7 @@ export const getServidores = (table) => {
             fabricante: servidor.fabricante,
             nombreProveedor: servidor.nombreProveedor,
             nube: servidor.nube,
+            estado: servidor.estado,
             ciudad: servidor.ciudad,
             ubicacion: servidor.ubicacion,
             gpoResponsable: servidor.gpoResponsable,
@@ -73,12 +74,12 @@ export const getServidores = (table) => {
 
             case "servidor":
                 cmdbItems = results.map(servidor => ({
+                    noSerie: servidor.noSerie,
                     nombre: servidor.nombre,
                     descipcionCI: servidor.descipcionCI,
-                    noSerie: servidor.noSerie,
                     mantenimiento: servidor.mantenimiento,
                     empresa: servidor.empresa,
-                    estado: servidor.estado,
+                    estadoCI: servidor.estadoCI,
                     impacto: servidor.impacto,
                     urgencia: servidor.urgencia,
                     prioridad: servidor.prioridad,
@@ -91,6 +92,7 @@ export const getServidores = (table) => {
                     fabricante: servidor.fabricante,
                     nombreProveedor: servidor.nombreProveedor,
                     nube: servidor.nube,
+                    estado: servidor.estado,
                     ciudad: servidor.ciudad,
                     ubicacion: servidor.ubicacion,
                     gpoResponsable: servidor.gpoResponsable,
@@ -134,12 +136,13 @@ export const getServidores = (table) => {
 
                 case "almacenamiento": 
                 cmdbItems = results.map(almacenamiento => ({
+                    noSerie: almacenamiento.noSerie,
                     nombre: almacenamiento.nombre,
                     descripcionCI: almacenamiento.descripcionCI,
                     noSerie: almacenamiento.noSerie,
                     mantenimiento: almacenamiento.mantenimiento,
                     empresa: almacenamiento.empresa,
-                    estado: almacenamiento.estado,
+                    estadoCI: almacenamiento.estadoCI,
                     entorno: almacenamiento.entorno,
                     impacto: almacenamiento.impacto,
                     urgencia: almacenamiento.urgencia,
@@ -152,6 +155,7 @@ export const getServidores = (table) => {
                     fabricante: almacenamiento.fabricante,
                     nombreProveedor: almacenamiento.nombreProveedor,
                     nube: almacenamiento.nube,
+                    estado: almacenamiento.estado,
                     localidad: almacenamiento.localidad,
                     direccion: almacenamiento.direccion,
                     ubicacion: almacenamiento.ubicacion,
@@ -170,12 +174,12 @@ export const getServidores = (table) => {
 
                 case "telecomunicaciones": 
                 cmdbItems = results.map(almacenamiento => ({
+                    noSerie: almacenamiento.noSerie,
                     nombre: almacenamiento.nombre,
                     descripcionCI: almacenamiento.descripcionCI,
-                    noSerie: almacenamiento.noSerie,
                     mantenimiento: almacenamiento.mantenimiento,
                     empresa: almacenamiento.empresa,
-                    estado: almacenamiento.estado,
+                    estadoCI: almacenamiento.estadoCI,
                     impacto: almacenamiento.impacto,
                     urgencia: almacenamiento.urgencia,
                     prioridad: almacenamiento.prioridad,
@@ -187,6 +191,7 @@ export const getServidores = (table) => {
                     fabricante: almacenamiento.fabricante,
                     nombreProveedor: almacenamiento.nombreProveedor,
                     nube: almacenamiento.nube,
+                    estado: almacenamiento.estado,
                     localidad: almacenamiento.localidad,
                     ubicacion: almacenamiento.ubicacion,
                     fechaInstalacion: almacenamiento.fechaInstalacion,

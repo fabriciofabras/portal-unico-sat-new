@@ -87,3 +87,34 @@ footer {
     margin-top: auto; /* Esto empuja el footer hacia abajo solo si es necesario */
     padding-bottom: 20px; /* Agrega espacio para el contenido final sin generar scroll */
 }
+/* Fija la sección del título, búsqueda y botón */
+
+  /* Hacer que la tabla tenga un área de desplazamiento */
+  .scrollable-section {
+    max-height: calc(100vh - 270px); /* Ajustar según la altura de la sección fija */
+    overflow-y: auto;
+  }
+  
+/* Aplica al encabezado (fila de th) */
+thead th {
+    position: sticky;
+    top: 0; /* Fija la fila de encabezado en la parte superior al hacer scroll vertical */
+    z-index: 3; /* Mayor valor para que esté por encima de las celdas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra opcional para un efecto visual */
+  }
+  
+  /* Aplica a la primera columna de cada fila */
+  th:first-child, td:first-child {
+    position: sticky;
+    left: 0; /* Fija la primera columna en el borde izquierdo al hacer scroll horizontal */
+    z-index: 2; /* Menor valor que el encabezado, pero mayor que las otras celdas */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra opcional para un mejor efecto */
+  }
+
+  thead th:first-child {
+    position: sticky;
+    top: 0; /* Fija el encabezado en la parte superior */
+    left: 0; /* Fija también la primera columna al borde izquierdo */
+    z-index: 4; /* Valor más alto para que esté sobre el resto del contenido */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+  }

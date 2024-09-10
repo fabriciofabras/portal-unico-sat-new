@@ -24,6 +24,7 @@ const dbName = 'inventarioDB';
 
 let db;
 let productosCollection;
+let sesionesCollection;
 let usuariosCollection;
 let almacenamientoCollection;
 let servidoresCollection;
@@ -39,6 +40,7 @@ MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     usuariosCollection = db.collection('usuarios');
     telecomunicacionesCollection = db.collection('telecomunicaciones');
     servidoresCollection = db.collection('servidores');
+    sesionesCollection = db.collection('sesiones');
   })
   .catch(error => console.error(error));
 
@@ -216,10 +218,12 @@ app.post('/login', async (req, res) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Access-Control-Allow-Credentials', true);
 
-  const { usuario, password } = req.body;
+  const { usuario, password, confirmNewSession, userId } = req.body;
 
   console.log("usuario", usuario)
   console.log("password", password)
+  console.log("confirmNewSession", confirmNewSession)
+  let result;
 
   try {
     // const usuario = req.params.usuario;
@@ -227,45 +231,64 @@ app.post('/login', async (req, res) => {
     console.log("item", item)
     let mensaje;
 
-    const objectId = new ObjectId(item._id);
-
     if (item != null) {
 
       console.log("IF")
       if (item.password === password) {
 
-        if (item.logged === false) {
-          mensaje = "El usuario ha sido logueado"
+        if (confirmNewSession === true) {
 
           try {
-            const result = await usuariosCollection.findOneAndUpdate(
-              { _id: objectId },
-              { $set: { logged: true } }, // otros campos
-              {
-                returnDocument: 'after', // Devuelve el documento después de la actualización
-                upsert: false // No crear un documento si no se encuentra
-              }
-            );
 
-            console.log("result", result)
-            if (!result) {
-/*             return res.status(404).send('Producto no encontrado');
- */          }
+            // Eliminar el documento basado en el sessionId
+            const result = await sesionesCollection.deleteOne({ _id: new ObjectId(userId) });
 
-/*           res.status(200).json("El producto se actualizó correctamente");
- */        } catch (error) {
-/*           res.status(500).json({ error: 'Error actualizando el producto' });
- */        }
-        }else{
-          mensaje="El usuario ya se encuentra loggeado,¿Desea iniciar sesión en esta ventana?";
+          } catch (error) {
+            res.status(500).json({ message: 'Server error.', error: error.message });
+          }
+
+        } else {
+
+          try {
+
+            const usuarioSesionBD = await sesionesCollection.findOne({ usuario: item.usuario });
+            console.log("Usuario con Sesion Activa:", confirmNewSession)
+            console.log("Usuario con Sesion usuarioSesionBD:", usuarioSesionBD)
+
+
+            //Se ejecuta si hay una sesión activa
+            if (usuarioSesionBD != null) {
+              console.log("Entró if")
+
+              mensaje = "El usuario ya se encuentra loggeado,¿Desea iniciar sesión en esta ventana?";
+              return res.status(200).json({ message: mensaje, usuarioSesion: usuarioSesionBD });
+
+            }
+          } catch (error) {
+            console.log("Error sesion activa")
+          }
         }
+        console.log("el usuario ha sido logueado")
+        mensaje = "El usuario ha sido logueado"
+
+        const nuevaSesion = {
+          usuario: item.usuario
+        }
+
+        try {
+          result = await sesionesCollection.insertOne(nuevaSesion);
+          console.log("Result:", result)
+        } catch (error) {
+          res.status(400).send(error);
+        }
+
 
       } else {
         mensaje = "El usuario y/o contraseña son incorrectos"
       }
       // res.json(item);
 
-      return res.status(200).json({ message: mensaje, perfil: item.perfil });
+      return res.status(200).json({ message: mensaje, usuarioSesion: result, perfil: item.perfil });
 
     } else {
       return res.status(404).json({ message: 'El usuario no existe' });
@@ -351,6 +374,23 @@ app.put('/updateUsuario/:id', async (req, res) => {
     res.status(200).json("El producto se actualizó correctamente");
   } catch (error) {
     res.status(500).json({ error: 'Error actualizando el producto' });
+  }
+});
+
+app.post('/logoutUser/:sesionId', async (req, res) => {
+  const sesionId = req.params.sesionId;
+
+  console.log("Sesion Id", sesionId)
+  try {
+
+    // Eliminar el documento basado en el sessionId
+    const result = await sesionesCollection.deleteOne({ _id: new ObjectId(sesionId) });
+
+    // Verificar si algún documento fue eliminado
+    return result.deletedCount > 0;
+
+  } catch (error) {
+    res.status(500).json({ message: 'Server error.', error: error.message });
   }
 });
 

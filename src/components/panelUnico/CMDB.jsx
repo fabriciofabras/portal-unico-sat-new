@@ -6,7 +6,7 @@ export const CMDB = () => {
 
   return (
     <section id="about">
-      <div className="container flex px-1 py-3 md:flex-row flex-col items-center">
+      <div className="container flex px-1 py-1 md:flex-row flex-col items-center">
 
       <Dashboard></Dashboard>
          {/* <iframe  style={{width: 'inherit'}}

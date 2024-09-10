@@ -52,7 +52,7 @@ export const Menu = ({ onOpcionSeleccionada }) => {
                 </OverlayTrigger>
 
             </div>*/}
-            {profile === "sat" ? (<div></div>) : (<div className="p-2">
+            {profile.perfil === "sat" ? (<div></div>) : (<div className="p-2">
                 <OverlayTrigger
                     placement="right"
                     delay={{ show: 0, hide: 400 }}

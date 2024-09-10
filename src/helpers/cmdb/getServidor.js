@@ -2,7 +2,7 @@ import { URL_SERVER } from "../../properties";
 
 export const getServidor = async (id) => {
   try {
-    const response = await fetch(`https://${URL_SERVER}/producto/${id}`);
+    const response = await fetch(`http://${URL_SERVER}:3000/producto/${id}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }

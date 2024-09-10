@@ -17,34 +17,41 @@ export const Login = ({ handleLogueado }) => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [sesionActiva, setSesionActiva] = useState(false);
+  const [idSesion,setIdSesion] = useState("")
   let confirmacionLoggeoNuevo;
+
+  const validarUsuario =(confirmNewSession, userId)=>{
+
+    validateUser(formData,confirmNewSession, userId)
+    .then((res) => {
+      console.log("RES");
+      console.log(res);
+
+      if (res.message === "El usuario ha sido logueado") {
+        setProfile(res)
+        handleLogueado(true);
+      } else {
+
+        if (res.message === "El usuario ya se encuentra loggeado,¿Desea iniciar sesión en esta ventana?") {
+          setProfile(res)
+          setSesionActiva(true);
+        }
+        setError(res.message);
+      }
+
+    })
+    .catch((e) => {
+      console.log(e.message);
+    });
+
+  }
 
   const login = (e) => {
     console.log('login')
 
     e.preventDefault();
 
-    validateUser(formData)
-      .then((res) => {
-        console.log("RES");
-        console.log(res);
-
-        if (res.message === "El usuario ha sido logueado") {
-          setProfile(res.perfil)
-          handleLogueado(true);
-        } else {
-
-          if (res.message === "El usuario ya se encuentra loggeado,¿Desea iniciar sesión en esta ventana?") {
-            setProfile(res.perfil)
-            setSesionActiva(true);
-          }
-          setError(res.message);
-        }
-
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
+    validarUsuario(false);
   }
 
   const handleChange = (e) => {
@@ -58,8 +65,10 @@ export const Login = ({ handleLogueado }) => {
   };
 
   const handleConfirmSesion = () =>{
-      handleLogueado(true);
-      console.log("handleConfirmSesion")
+
+      validarUsuario(true, profile.usuarioSesion._id)
+      
+      console.log("handleConfirmSesion",profile.usuarioSesion._id)
   }
 
   const handleCancelSesion = () =>{

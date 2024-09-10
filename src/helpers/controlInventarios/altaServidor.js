@@ -25,7 +25,7 @@ export const altaServidor = (formData) => {
         capacidad: formData.capacidad
     }
 
-        fetch(`http:${URL_SERVER}/altaServidor`, {
+        fetch(`https:${URL_SERVER}/altaServidor`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

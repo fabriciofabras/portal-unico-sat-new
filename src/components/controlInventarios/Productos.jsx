@@ -85,11 +85,12 @@ export const Productos = () => {
         , [show]);
 
     return (
-        <div>
+        <div className="container">
             <ModalAlta isEditMode={editMode} accion={accion} idProducto={idProducto} show={show} handleClose={handleClose} />
+            <div className="fixed-section">
             <div className="text-warning h1">Productos</div>
             <Container>
-                <Row className="m-4">
+                <Row className="m-1">
                     <Col lg={3}>
                         <InputGroup className="mb-3">
                             <Form.Control
@@ -105,14 +106,14 @@ export const Productos = () => {
                     </Col>
                     <Col lg={6}></Col>
                     <Col lg={3} >
-                    {(profile === 'atalait-application-admin' || profile==='atalait-administracion' || profile==='atalait-gestion') ? (<Button variant="warning" onClick={() => openModalForCreate()}>Agregar Producto</Button>) : (<div></div>)}
+                    {(profile.perfil === 'atalait-application-admin' || profile.perfil==='atalait-administracion' || profile.perfil ==='atalait-gestion') ? (<Button variant="warning" onClick={() => openModalForCreate()}>Agregar Producto</Button>) : (<div></div>)}
                     </Col>
                 </Row>
             </Container>
-            <div class="table-responsive" >
-                <Table className="table p-4 small " variant striped bordered hover>
-                    <thead>
-                        {profile === 'sat' ? (
+            <div class="table-responsive"  className="scrollable-section table-container">
+                <Table className="table p-1 small " variant striped bordered hover>
+                    <thead className="table-header">
+                        {profile.perfil === 'sat' ? (
                             <tr>
                                 <th style={{ width: "30%" }} >Número de parte</th>
                                 <th style={{ width: "40%" }}>Descripción</th>
@@ -120,8 +121,8 @@ export const Productos = () => {
                                 <th style={{ width: "10%" }}>Cantidad</th>
                             </tr>) :
                             (<tr style={{ fontSize: "12px" }}>
-                                <th style={{ width: "5%" }}>Tipo</th>
                                 <th style={{ width: "5%" }}>Número de parte</th>
+                                <th style={{ width: "5%" }}>Tipo</th>
                                 <th style={{ width: "10%" }}>Descripción</th>
                                 <th style={{ width: "10%" }}>Componente</th>
                                 <th style={{ width: "2%" }}>Sede</th>
@@ -136,12 +137,12 @@ export const Productos = () => {
                                 <th style={{ width: "5%" }}>Sn Vendor</th>
                                 <th style={{ width: "5%" }}>Sn EMC</th>
                                 <th style={{ width: "5%" }}>Capacidad</th>
-                                {(profile === 'atalait-application-admin' || profile==='atalait-administracion' || profile==='atalait-gestion') ? (<th className="fixed-col">Editar</th>) : (<div></div>)}
+                                {(profile.perfil === 'atalait-application-admin' || profile.perfil ==='atalait-administracion' || profile.perfil ==='atalait-gestion') ? (<th className="fixed-col">Editar</th>) : (<div></div>)}
 
                             </tr>)}
                     </thead>
                     <tbody>
-                        {profile === 'sat' ? (
+                        {profile.perfil === 'sat' ? (
                             filteredData.map((producto, index) => (
                                 <tr>
                                     <td>{producto.noParte}</td>
@@ -154,8 +155,8 @@ export const Productos = () => {
                         ) : (
                             filteredData.map((producto, index) => (
                                 <tr style={{ fontSize: "12px" }}>
-                                    <td >{producto.tipo}</td>
                                     <td>{producto.noParte}</td>
+                                    <td >{producto.tipo}</td>
                                     <td>{producto.desc}</td>
                                     <td>{producto.componente}</td>
                                     <td>{producto.sede}</td>
@@ -177,6 +178,7 @@ export const Productos = () => {
                         }
                     </tbody>
                 </Table>
+            </div>
             </div>
 
         </div>
