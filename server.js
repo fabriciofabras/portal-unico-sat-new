@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');
 
 
 const app = express();
+const port = 3001;
+
 
 // Configurar el middleware cors
 app.use(cors());
@@ -220,9 +222,6 @@ app.post('/login', async (req, res) => {
 
   const { usuario, password, confirmNewSession, userId } = req.body;
 
-  console.log("usuario", usuario)
-  console.log("password", password)
-  console.log("confirmNewSession", confirmNewSession)
   let result;
 
   try {
@@ -410,7 +409,11 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-// Crear servidor HTTPS
+/* // Crear servidor HTTPS
 https.createServer(sslOptions, app).listen(443, () => {
   console.log('Servidor HTTPS corriendo en el puerto 443');
+}); */
+
+app.listen(port, () => {
+  console.log(`Servidor corriendo en http://localhost:${port}`);
 });

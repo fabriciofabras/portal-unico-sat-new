@@ -12,7 +12,8 @@ import { CMDB } from "./components/panelUnico/CMDB";
 import { Login } from "./components/panelUnico/Login";
 import './App.css';
 import { UserProfileProvider } from "./UserProfileContext";
-
+import { PanelUnicoRoutes } from './routes/PanelUnicoRoutes';
+import { BrowserRouter } from 'react-router-dom';
 
 export default function App() {
 
@@ -32,7 +33,7 @@ export default function App() {
 
   return (
     <main className="main-container text-gray-400 bg-gray-900 body-font">
-      <UserProfileProvider>     {logueado ? (<div><NavBar onOpcionSeleccionada={handleOpcionSeleccionada} handleLogueado={handleLogueado} />
+      {/* <UserProfileProvider>     {logueado ? (<div><NavBar onOpcionSeleccionada={handleOpcionSeleccionada} handleLogueado={handleLogueado} />
         <div>
           {opcionSeleccionada === 'repositorio' && <Repositorio />}
           {opcionSeleccionada === 'heatmap' && <HeatMap />}
@@ -41,15 +42,18 @@ export default function App() {
           {opcionSeleccionada === 'inventarios' && <Inventarios />}
           {opcionSeleccionada === 'cmdb' && <CMDB />}
           {opcionSeleccionada === 'mesa' && <Mesa />}
-          {/* Agrega más condiciones según las opciones disponibles */}
         </div></div>) : (
         <Login handleLogueado={handleLogueado}></Login>
       )}
 
+      </UserProfileProvider> */}
+      <UserProfileProvider>
+        <BrowserRouter>
+          <PanelUnicoRoutes />
+        </BrowserRouter>
       </UserProfileProvider>
 
-
-{/*       <Projects />
+      {/*       <Projects />
  */}      {/* <Skills/>
       <Contact/> */}
     </main>

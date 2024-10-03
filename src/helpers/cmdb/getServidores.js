@@ -4,7 +4,7 @@ export const getServidores = (table) => {
 
     const getServidores = async () => {
 
-        const url = `https://${URL_SERVER}/${table}`;
+        const url = `http://${URL_SERVER}:3001/${table}`;
         const resp = await fetch(url);
         const results = await resp.json();
 
