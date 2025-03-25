@@ -5,8 +5,24 @@ import { Col, Row } from "react-bootstrap";
 import { UserProfileContext } from "../../UserProfileContext";
 import { logoutUser } from "../../helpers/panelUnico/logoutUser";
 import { NavLink } from "react-router-dom";
+import axios from 'axios';
 
 export const NavBar = ({ onOpcionSeleccionada, handleLogueado, userInfo }) => {
+
+  const handleTestConnection = async () => {
+    const targetUrl = 'https://10.97.1.79'; // Reemplaza con tu URL o IP
+
+    try {
+      const response = await axios.get(targetUrl, {
+        timeout: 5000, // Tiempo de espera de 5 segundos
+      });
+      console.log('Conexión exitosa:', response.data);
+      alert(`Conexión exitosa con: ${targetUrl}`);
+    } catch (error) {
+      console.error('Error al conectar:', error.message);
+      alert(`No se pudo conectar con: ${targetUrl}`);
+    }
+  };
 
   console.log("userInfo", userInfo)
   const { profile } = useContext(UserProfileContext);
@@ -24,8 +40,10 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado, userInfo }) => {
     const redirectUri = "http://localhost:3000/inicio"; // Reemplaza con tu URL de redirección
     const scope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
     const responseType = "token"; // O "code" si planeas usarlo en el backend para obtener el token de acceso
-    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientID}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}&include_granted_scopes=true`;
+    const authUrl = `https://auth.uat.cloudb.sat.gob.mx`;
 
+/*     const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientID}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}&include_granted_scopes=true`;
+ */
     // Redirigir a la página de autenticación de Google
     window.location.href = authUrl;
   }
@@ -67,7 +85,9 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado, userInfo }) => {
             </Col>
             <Col xs={1} md={1} lg={1}>
               <ul className="menu justify-center menu-item dropdown">
-
+                <button onClick={handleTestConnection}>
+                  Probar Conexión a la URL
+                </button>
                 {userInfo === null ? (
                   <a onClick={handleSalir}
                     href="#"

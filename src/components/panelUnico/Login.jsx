@@ -55,8 +55,9 @@ export const Login = ({ handleLogueado }) => {
 const redirectUri = "http://localhost:3000/stockdepartes"; // Reemplaza con tu URL de redirección
 const scope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
 const responseType = "token"; // O "code" si planeas usarlo en el backend para obtener el token de acceso
-const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientID}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}&include_granted_scopes=true`;
-
+const authUrl = `https://auth.uat.cloudb.sat.gob.mx`;
+/* const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientID}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}&include_granted_scopes=true`;
+ */
 // Redirigir a la página de autenticación de Google
 window.location.href = authUrl;
 
