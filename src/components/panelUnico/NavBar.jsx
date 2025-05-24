@@ -36,16 +36,15 @@ export const NavBar = ({ onOpcionSeleccionada, handleLogueado, userInfo }) => {
      logoutUser(profile.usuarioSesion.insertedId); */
 
 
-    const clientID = "105019582790-c43fl7shjp4uctt9r4e1iqauapmu61i1.apps.googleusercontent.com";  // Reemplaza con tu Client ID
-    const redirectUri = "http://localhost:3000/inicio"; // Reemplaza con tu URL de redirección
-    const scope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
-    const responseType = "token"; // O "code" si planeas usarlo en el backend para obtener el token de acceso
-    const authUrl = `https://auth.uat.cloudb.sat.gob.mx`;
-
-/*     const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientID}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}&include_granted_scopes=true`;
- */
-    // Redirigir a la página de autenticación de Google
-    window.location.href = authUrl;
+     const clientID = "5072c397-67d6-4660-afd4-ff3c453243a6";  // Reemplaza con tu Client ID
+     const redirectUri = "https://sari2p1uat.atalait.com.mx/inicio"; // Reemplaza con tu URL de redirección
+     const scope = "PanelUnicoSARI2P1";
+     const responseType = "token"; // O "code" si planeas usarlo en el backend para obtener el token de acceso
+     //const authUrl = `https://auth.uat.cloudb.sat.gob.mx`;
+      const authUrl = `https://auth.uat.cloudb.sat.gob.mx/nidp/oauth/nam/authz?client_id=${clientID}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}&include_granted_scopes=true`;
+      
+     // Redirigir a la página de autenticación de Google
+     window.location.href = authUrl;
   }
 
   const handleSalir = () => {
