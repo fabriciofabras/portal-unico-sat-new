@@ -56,7 +56,7 @@ const redirectUri = "https://sari2p1uat.atalait.com.mx/inicio"; // Reemplaza con
 const scope = "PanelUnicoSARI2P1";
 const responseType = "token"; // O "code" si planeas usarlo en el backend para obtener el token de acceso
 //const authUrl = `https://auth.uat.cloudb.sat.gob.mx`;
- const authUrl = `https://auth.uat.cloudb.sat.gob.mx/nidp/oauth/nam/auth?client_id=${clientID}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}&include_granted_scopes=true`;
+ const authUrl = `https://auth.uat.cloudb.sat.gob.mx/nidp/oauth/nam/authz?client_id=${clientID}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}&include_granted_scopes=true`;
  
 // Redirigir a la página de autenticación de Google
 window.location.href = authUrl;
